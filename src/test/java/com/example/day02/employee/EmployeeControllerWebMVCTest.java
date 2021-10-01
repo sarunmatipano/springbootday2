@@ -16,7 +16,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 @WebMvcTest(EmployeeController.class)
 public class EmployeeControllerWebMVCTest {
 
@@ -29,17 +28,17 @@ public class EmployeeControllerWebMVCTest {
     @Test
     public void getById() throws Exception{
 
-//        // arrange
-//        EmployeeResponse data = new EmployeeResponse(1, "SarunM");
-//        when(EmployeeService.get(1)).thenReturn(data);
-//
-//        // act
-//        MvcResult mvcResult = mvc.perform(get("/employee/1")).andExpect(status().isOk()).andReturn();
-//        ObjectMapper mapper = new ObjectMapper();
-//        EmployeeResponse actual = mapper.readValue(mvcResult.getResponse().getContentAsByteArray(), EmployeeResponse.class);
-//
-//        // assert
-//        assertEquals(1, actual.getId());
-//        assertEquals("SarunM", actual.getName());
+        // arrange
+        EmployeeResponse data = new EmployeeResponse(1, "SarunM");
+        when(employeeService.get(1)).thenReturn(data);
+
+        // act
+        MvcResult mvcResult = mvc.perform(get("/employee/1")).andExpect(status().isOk()).andReturn();
+        ObjectMapper mapper = new ObjectMapper();
+        EmployeeResponse actual = mapper.readValue(mvcResult.getResponse().getContentAsByteArray(), EmployeeResponse.class);
+
+        // assert
+        assertEquals(1, actual.getId());
+        assertEquals("SarunM", actual.getName());
     }
 }

@@ -16,6 +16,6 @@ public class EmployeeService {
         if(!result.isPresent()){
             throw new RuntimeException("Employee not found with id = "+id);
         }
-        return new EmployeeResponse(id, "SarunM");
+        return new EmployeeResponse(id, result.get().getName());
     }
 }

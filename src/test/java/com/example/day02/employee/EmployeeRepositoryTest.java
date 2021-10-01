@@ -3,6 +3,7 @@ package com.example.day02.employee;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Optional;
 
@@ -17,6 +18,8 @@ class EmployeeRepositoryTest {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    @MockBean
+    private EmployeeRepository mock;
     @Test
     public void case01(){
         // arrange
