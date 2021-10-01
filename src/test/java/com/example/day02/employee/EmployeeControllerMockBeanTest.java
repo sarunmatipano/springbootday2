@@ -10,41 +10,32 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import static org.assertj.core.api.BDDAssumptions.given;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class EmployeeControllerTest {
+public class EmployeeControllerMockBeanTest {
+
+    @MockBean
+    private EmployeeRepository mock;
 
     @Autowired
-    TestRestTemplate restTemplate;
-
-    @Autowired
-    private EmployeeRepository repository;
-
-    @AfterEach
-    public void clearData(){
-        repository.deleteAll();
-    }
+    private TestRestTemplate restTemplate;
 
     @Test
-    void case01() {
+    void case02() {
         // arrange
         Employee employee = new Employee();
-        employee.setName("SarunM");
-        repository.save(employee);
+        employee.setId(11);
+        employee.setName("Nume");
+        when(mock.findById(11)).thenReturn(Optional.of(employee));
 
         // act
-        EmployeeResponse actual = restTemplate.getForObject("/employee/1", EmployeeResponse.class);
+        EmployeeResponse actual = restTemplate.getForObject("/employee/11", EmployeeResponse.class);
 
         // assert
-        assertEquals(1, actual.getId());
-        assertEquals("SarunM", actual.getName());
-        assertNotEquals("SarunMM", actual.getName());
-        assertNotNull(actual);
+        assertEquals(11, actual.getId());
+        assertEquals("Nume", actual.getName());
     }
-
 
 }
 

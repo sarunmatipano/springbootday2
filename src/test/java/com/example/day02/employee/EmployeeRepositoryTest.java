@@ -18,8 +18,6 @@ class EmployeeRepositoryTest {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    @MockBean
-    private EmployeeRepository mock;
     @Test
     public void case01(){
         // arrange
@@ -31,21 +29,9 @@ class EmployeeRepositoryTest {
         Optional<Employee> result = repository.findById(1);
 
         // assert
-        assertTrue(result.isPresent());
         assertEquals(1, result.get().getId());
         assertEquals("Sarun", result.get().getName());
 
-    }
-
-    @Test
-    public void case02(){
-        // arrange
-
-        // act
-        Optional<Employee> result = repository.findById(1);
-
-        // assert
-        assertFalse(result.isPresent());
     }
 
 }
