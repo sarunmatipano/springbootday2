@@ -14,6 +14,9 @@ class EmployeeRepositoryTest {
     @Autowired
     private EmployeeRepository repository;
 
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
     @Test
     public void case01(){
         // arrange

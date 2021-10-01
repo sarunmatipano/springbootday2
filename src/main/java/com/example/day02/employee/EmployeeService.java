@@ -1,11 +1,21 @@
 package com.example.day02.employee;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class EmployeeService {
 
-    public static EmployeeResponse get(int id){
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    public EmployeeResponse get(int id){
+        Optional<Employee> result = employeeRepository.findById(id);
+        if(!result.isPresent()){
+            throw new RuntimeException("Employee not found with id = "+id);
+        }
         return new EmployeeResponse(id, "SarunM");
     }
 }
