@@ -31,4 +31,15 @@ class EmployeeRepositoryTest {
 
     }
 
+    @Test
+    public void case02(){
+        // arrange
+
+        // act
+        Optional<Employee> result = repository.findById(1);
+
+        // assert
+        assertFalse(result.isPresent());
+    }
+
 }
