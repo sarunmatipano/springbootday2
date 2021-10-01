@@ -8,6 +8,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import static org.assertj.core.api.BDDAssumptions.given;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -29,8 +30,10 @@ public class EmployeeControllerWebMVCTest {
     public void getById() throws Exception{
 
         // arrange
-        when(EmployeeService.get(1)).thenReturn(new EmployeeResponse(1, "Sarun"));
+        EmployeeResponse data = new EmployeeResponse(1, "SarunM");
+        when(EmployeeService.get(1)).thenReturn(data);
 
+        // act
         MvcResult mvcResult = mvc.perform(get("/employee/1")).andExpect(status().isOk()).andReturn();
         ObjectMapper mapper = new ObjectMapper();
         EmployeeResponse actual = mapper.readValue(mvcResult.getResponse().getContentAsByteArray(), EmployeeResponse.class);
