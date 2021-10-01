@@ -15,7 +15,7 @@ class EmployeeControllerTest {
 
 
     @Test
-    void exampleTest() {
+    void getEmployeeByIdTest() {
         // act
         EmployeeResponse actual = restTemplate.getForObject("/employee/1", EmployeeResponse.class);
 
